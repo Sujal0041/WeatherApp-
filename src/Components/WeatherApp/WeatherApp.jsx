@@ -11,11 +11,9 @@ import Wind_icon from '../Assets/wind.png';
 import Humidity_icon from '../Assets/humidity.png';
 
 const WeatherApp = () => {
-
-
     let api_key = "f1c923e86431b6d6cef6aa81fc694192";
-
     const search = async () =>{
+      try {
         const element = document.getElementsByClassName('city-input');
         if(element[0].value == "")
         {
@@ -24,17 +22,21 @@ const WeatherApp = () => {
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&appid=${api_key}&units=metric`;
         let response = await fetch(url);
         let data = await response.json();
+
         const humidity = document.getElementsByClassName('humidity-percent');
         const wind = document.getElementsByClassName('wind-rate');
         const temperature = document.getElementsByClassName('weather-temp');
         const location = document.getElementsByClassName('weather-Location');
 
-        humidity[0].innerHTML = data.main.humidity;
-        wind[0].innerHTML = data.wind.speed;
-        temperature[0].innerHTML = data.main.temp;
+        humidity[0].innerHTML = data.main.humidity+" %";
+        wind[0].innerHTML = data.wind.speed+" km/h";
+        temperature[0].innerHTML = data.main.temp+" °C";
         location[0].innerHTML = data.name;
+      } catch (error) {
+        console.error("An error occurred:", error);
+        alert("Error fetching weather data. Please try again.");
     }
-
+    }
   return (
     <div className='container'>
         <div className='top-bar'>
@@ -65,10 +67,8 @@ const WeatherApp = () => {
             <div className='text'>Wind Speed</div>
             </div>
         </div>
-        
     </div>
     </div>
   )
 }
-
 export default WeatherApp
