@@ -1,6 +1,6 @@
 .container{
     width: 607px;
-    height: 829px;
+    height: 1029px;
     margin: auto;
     margin-top: 75px;
     border-radius: 12px;
@@ -88,4 +88,9 @@
 
 .icon{
     margin-top: 10px;
+}
+
+.weather-temp1{
+    color: #ebfffc;
+    font-size: 30px;
 }
