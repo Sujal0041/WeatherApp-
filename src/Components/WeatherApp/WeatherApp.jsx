@@ -99,18 +99,6 @@ const WeatherApp = () => {
 
         
     </div>
-
-    <div className='days'>
-            <h1 style={{color:"white"}}>16 Days</h1>
-            <div className='weather-temp1'>24°C</div>
-
-        </div>
-
-        <div className='month'>
-            <h1 style={{color:"white"}}>30 Days</h1>
-            <div className='weather-temp1'>24°C</div>
-
-        </div>
     </div>
   )
 }
