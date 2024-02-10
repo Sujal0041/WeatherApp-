@@ -20,19 +20,34 @@ const WeatherApp = () => {
         {
             alert("Please Enter City Name");
         }
-        let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&appid=${api_key}&units=metric`;
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${element[0].value}&appid=${api_key}&units=metric&lang=en`;
         let response = await fetch(url);
         let data = await response.json();
+
+        let url1 = `https://api.openweathermap.org/data/2.5/forecast?q=${element[0].value}&appid=${api_key}`;
+        let response1 = await fetch(url1);
+        let data1 = await response1.json();
+
+
 
         const humidity = document.getElementsByClassName('humidity-percent');
         const wind = document.getElementsByClassName('wind-rate');
         const temperature = document.getElementsByClassName('weather-temp');
         const location = document.getElementsByClassName('weather-Location');
 
+        const temp = document.getElementsByClassName('days');
+
+        //Current
         humidity[0].innerHTML = data.main.humidity+" %";
         wind[0].innerHTML = data.wind.speed+" km/h";
         temperature[0].innerHTML = data.main.temp+" °C";
         location[0].innerHTML = data.name;
+
+        //5days
+        temp[0].innerHTML = data1.list[0].main.temp + " °C";
+
+
+
 
         console.log(data.weather[0].icon);
 
@@ -98,6 +113,13 @@ const WeatherApp = () => {
         </div>
 
         
+    </div>
+
+    <div> 
+      <h1 style={{color:"white"}}>5 Days Average</h1>
+      <div className='days' style={{color:"white", fontSize:"30px"}}>25°C</div>
+
+
     </div>
     </div>
   )
